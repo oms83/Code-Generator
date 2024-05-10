@@ -1,0 +1,9 @@
+C:\Users\omerm\Desktop\Code Generator\CodeGeneratorBusiness\bin\Debug\CodeGeneratorBusiness.dll
+C:\Users\omerm\Desktop\Code Generator\CodeGeneratorBusiness\bin\Debug\CodeGeneratorBusiness.pdb
+C:\Users\omerm\Desktop\Code Generator\CodeGeneratorBusiness\bin\Debug\CodeGeneratorDataAccess.dll
+C:\Users\omerm\Desktop\Code Generator\CodeGeneratorBusiness\bin\Debug\CodeGeneratorDataAccess.pdb
+C:\Users\omerm\Desktop\Code Generator\CodeGeneratorBusiness\obj\Debug\Business.csproj.AssemblyReference.cache
+C:\Users\omerm\Desktop\Code Generator\CodeGeneratorBusiness\obj\Debug\Business.csproj.CoreCompileInputs.cache
+C:\Users\omerm\Desktop\Code Generator\CodeGeneratorBusiness\obj\Debug\Business.csproj.Up2Date
+C:\Users\omerm\Desktop\Code Generator\CodeGeneratorBusiness\obj\Debug\CodeGeneratorBusiness.dll
+C:\Users\omerm\Desktop\Code Generator\CodeGeneratorBusiness\obj\Debug\CodeGeneratorBusiness.pdb

@@ -1,0 +1,124 @@
+
+using System;
+using System.Data;
+
+public class clsInternationalLicenses
+{
+        public enum enInternationalLicensesMode {AddNew = 0, Update = 1};
+        private enInternationalLicensesMode _Mode;
+                                        
+        public  InternationalLicenseID { get; set; }
+	public  ApplicationID { get; set; }
+	public  DriverID { get; set; }
+	public  IssuedUsingLocalLicenseID { get; set; }
+	public  IssueDate { get; set; }
+	public  ExpirationDate { get; set; }
+	public  IsActive { get; set; }
+	public  CreatedByUserID { get; set; }
+	
+        
+        public clsInternationalLicenses()
+        {
+                            
+            this.InternationalLicenseID = -1; 
+	    this.ApplicationID = -1; 
+	    this.DriverID = -1; 
+	    this.IssuedUsingLocalLicenseID = -1; 
+	    this.IssueDate = null; 
+	    this.ExpirationDate = null; 
+	    this.IsActive = true; 
+	    this.CreatedByUserID = -1; 
+	    
+
+            _Mode = enInternationalLicensesMode.AddNew;
+        }
+        
+        
+        private clsInternationalLicenses( int InternationalLicenseID,  int ApplicationID,  int DriverID,  int IssuedUsingLocalLicenseID,  object IssueDate,  object ExpirationDate,  bool IsActive,  int CreatedByUserID)
+        {
+            this.InternationalLicenseID = InternationalLicenseID; 
+	    this.ApplicationID = ApplicationID; 
+	    this.DriverID = DriverID; 
+	    this.IssuedUsingLocalLicenseID = IssuedUsingLocalLicenseID; 
+	    this.IssueDate = IssueDate; 
+	    this.ExpirationDate = ExpirationDate; 
+	    this.IsActive = IsActive; 
+	    this.CreatedByUserID = CreatedByUserID; 
+	    
+            _Mode = enInternationalLicensesMode.Update;
+        }
+        
+        
+        
+        public static clsInternationalLicenses GetInternationalLicensesInfoByInternationalLicenseID(int InternationalLicenseID)
+        {
+            
+             int ApplicationID = -1; 
+	     int DriverID = -1; 
+	     int IssuedUsingLocalLicenseID = -1; 
+	     object IssueDate = null; 
+	     object ExpirationDate = null; 
+	     bool IsActive = true; 
+	     int CreatedByUserID = -1; 
+	    
+
+            bool IsFound = clsInternationalLicensesData.GetInternationalLicensesInfoInternationalLicenseID(InternationalLicenseID, ref  ApplicationID, ref  DriverID, ref  IssuedUsingLocalLicenseID, ref  IssueDate, ref  ExpirationDate, ref  IsActive, ref  CreatedByUserID);
+
+            if (IsFound)
+            {
+                return new clsInternationalLicenses( InternationalLicenseID,  ApplicationID,  DriverID,  IssuedUsingLocalLicenseID,  IssueDate,  ExpirationDate,  IsActive,  CreatedByUserID);
+            }
+            else
+            {
+                return null;
+            }
+        }
+        
+        
+        
+        public static bool IsInternationalLicensesExistByInternationalLicenseID(int InternationalLicenseID)
+        {
+            return clsInternationalLicensesData.IsInternationalLicensesExistByInternationalLicenseID(InternationalLicenseID);
+        }
+        
+            
+        
+            private bool _UpdateInternationalLicenses()
+            {
+                return clsInternationalLicensesData.UpdateInternationalLicenses(this. InternationalLicenseID, this. ApplicationID, this. DriverID, this. IssuedUsingLocalLicenseID, this. IssueDate, this. ExpirationDate, this. IsActive, this. CreatedByUserID);
+            }
+            
+        
+        public static DataTable GetAllInternationalLicenses()
+        {
+            return clsInternationalLicensesData.GetAllInternationalLicenses();
+        }
+        
+        
+        public bool Save()
+        {
+            switch (_Mode)
+            {
+                case enInternationalLicensesMode.AddNew:
+
+                    if (_AddNewInternationalLicenses())
+                    {
+                        _Mode = enInternationalLicensesMode.Update;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+
+                case enInternationalLicensesMode.Update:
+
+                    return _UpdateInternationalLicenses();
+            }
+
+            return false;
+        }
+        
+}
+                

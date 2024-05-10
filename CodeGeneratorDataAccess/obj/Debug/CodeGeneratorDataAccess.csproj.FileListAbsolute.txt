@@ -1,0 +1,12 @@
+C:\Users\omerm\Desktop\CodeGeneratorDataAccess\bin\Debug\CodeGeneratorDataAccess.dll
+C:\Users\omerm\Desktop\CodeGeneratorDataAccess\bin\Debug\CodeGeneratorDataAccess.pdb
+C:\Users\omerm\Desktop\CodeGeneratorDataAccess\obj\Debug\CodeGeneratorDataAccess.csproj.AssemblyReference.cache
+C:\Users\omerm\Desktop\CodeGeneratorDataAccess\obj\Debug\CodeGeneratorDataAccess.csproj.CoreCompileInputs.cache
+C:\Users\omerm\Desktop\CodeGeneratorDataAccess\obj\Debug\CodeGeneratorDataAccess.dll
+C:\Users\omerm\Desktop\CodeGeneratorDataAccess\obj\Debug\CodeGeneratorDataAccess.pdb
+C:\Users\omerm\Desktop\Code Generator\CodeGeneratorDataAccess\bin\Debug\CodeGeneratorDataAccess.dll
+C:\Users\omerm\Desktop\Code Generator\CodeGeneratorDataAccess\bin\Debug\CodeGeneratorDataAccess.pdb
+C:\Users\omerm\Desktop\Code Generator\CodeGeneratorDataAccess\obj\Debug\CodeGeneratorDataAccess.csproj.AssemblyReference.cache
+C:\Users\omerm\Desktop\Code Generator\CodeGeneratorDataAccess\obj\Debug\CodeGeneratorDataAccess.csproj.CoreCompileInputs.cache
+C:\Users\omerm\Desktop\Code Generator\CodeGeneratorDataAccess\obj\Debug\CodeGeneratorDataAccess.dll
+C:\Users\omerm\Desktop\Code Generator\CodeGeneratorDataAccess\obj\Debug\CodeGeneratorDataAccess.pdb
