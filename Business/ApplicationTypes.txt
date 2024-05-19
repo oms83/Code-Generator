@@ -1,0 +1,104 @@
+
+using System;
+using System.Data;
+
+public class clsApplicationTypes
+{
+        public enum enApplicationTypesMode {AddNew = 0, Update = 1};
+        private enApplicationTypesMode _Mode;
+                                        
+        public  ApplicationTypeID { get; set; }
+	public  ApplicationTypeTitle { get; set; }
+	public  ApplicationFees { get; set; }
+	
+        
+        public clsApplicationTypes()
+        {
+                            
+            this.ApplicationTypeID = -1; 
+	    this.ApplicationTypeTitle = string.Empty; 
+	    this.ApplicationFees = 0; 
+	    
+
+            _Mode = enApplicationTypesMode.AddNew;
+        }
+        
+        
+        private clsApplicationTypes( int ApplicationTypeID,  string ApplicationTypeTitle,  decimal ApplicationFees)
+        {
+            this.ApplicationTypeID = ApplicationTypeID; 
+	    this.ApplicationTypeTitle = ApplicationTypeTitle; 
+	    this.ApplicationFees = ApplicationFees; 
+	    
+            _Mode = enApplicationTypesMode.Update;
+        }
+        
+        
+        
+        public static clsApplicationTypes GetApplicationTypesInfoByApplicationTypeID(int ApplicationTypeID)
+        {
+            
+             string ApplicationTypeTitle = string.Empty; 
+	     decimal ApplicationFees = 0; 
+	    
+
+            bool IsFound = clsApplicationTypesData.GetApplicationTypesInfoApplicationTypeID(ApplicationTypeID, ref  ApplicationTypeTitle, ref  ApplicationFees);
+
+            if (IsFound)
+            {
+                return new clsApplicationTypes( ApplicationTypeID,  ApplicationTypeTitle,  ApplicationFees);
+            }
+            else
+            {
+                return null;
+            }
+        }
+        
+        
+        
+        public static bool IsApplicationTypesExistByApplicationTypeID(int ApplicationTypeID)
+        {
+            return clsApplicationTypesData.IsApplicationTypesExistByApplicationTypeID(ApplicationTypeID);
+        }
+        
+            
+        
+            private bool _UpdateApplicationTypes()
+            {
+                return clsApplicationTypesData.UpdateApplicationTypes(this. ApplicationTypeID, this. ApplicationTypeTitle, this. ApplicationFees);
+            }
+            
+        
+        public static DataTable GetAllApplicationTypes()
+        {
+            return clsApplicationTypesData.GetAllApplicationTypes();
+        }
+        
+        
+        public bool Save()
+        {
+            switch (_Mode)
+            {
+                case enApplicationTypesMode.AddNew:
+
+                    if (_AddNewApplicationTypes())
+                    {
+                        _Mode = enApplicationTypesMode.Update;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+
+                case enApplicationTypesMode.Update:
+
+                    return _UpdateApplicationTypes();
+            }
+
+            return false;
+        }
+        
+}
+                

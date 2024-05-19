@@ -1,0 +1,112 @@
+
+using System;
+using System.Data;
+
+public class clsTests
+{
+        public enum enTestsMode {AddNew = 0, Update = 1};
+        private enTestsMode _Mode;
+                                        
+        public  TestID { get; set; }
+	public  TestAppointmentID { get; set; }
+	public  TestResult { get; set; }
+	public  Notes { get; set; }
+	public  CreatedByUserID { get; set; }
+	
+        
+        public clsTests()
+        {
+                            
+            this.TestID = -1; 
+	    this.TestAppointmentID = -1; 
+	    this.TestResult = true; 
+	    this.Notes = string.Empty; 
+	    this.CreatedByUserID = -1; 
+	    
+
+            _Mode = enTestsMode.AddNew;
+        }
+        
+        
+        private clsTests( int TestID,  int TestAppointmentID,  bool TestResult,  string Notes,  int CreatedByUserID)
+        {
+            this.TestID = TestID; 
+	    this.TestAppointmentID = TestAppointmentID; 
+	    this.TestResult = TestResult; 
+	    this.Notes = Notes; 
+	    this.CreatedByUserID = CreatedByUserID; 
+	    
+            _Mode = enTestsMode.Update;
+        }
+        
+        
+        
+        public static clsTests GetTestsInfoByTestID(int TestID)
+        {
+            
+             int TestAppointmentID = -1; 
+	     bool TestResult = true; 
+	     string Notes = string.Empty; 
+	     int CreatedByUserID = -1; 
+	    
+
+            bool IsFound = clsTestsData.GetTestsInfoTestID(TestID, ref  TestAppointmentID, ref  TestResult, ref  Notes, ref  CreatedByUserID);
+
+            if (IsFound)
+            {
+                return new clsTests( TestID,  TestAppointmentID,  TestResult,  Notes,  CreatedByUserID);
+            }
+            else
+            {
+                return null;
+            }
+        }
+        
+        
+        
+        public static bool IsTestsExistByTestID(int TestID)
+        {
+            return clsTestsData.IsTestsExistByTestID(TestID);
+        }
+        
+            
+        
+            private bool _UpdateTests()
+            {
+                return clsTestsData.UpdateTests(this. TestID, this. TestAppointmentID, this. TestResult, this. Notes, this. CreatedByUserID);
+            }
+            
+        
+        public static DataTable GetAllTests()
+        {
+            return clsTestsData.GetAllTests();
+        }
+        
+        
+        public bool Save()
+        {
+            switch (_Mode)
+            {
+                case enTestsMode.AddNew:
+
+                    if (_AddNewTests())
+                    {
+                        _Mode = enTestsMode.Update;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+
+                case enTestsMode.Update:
+
+                    return _UpdateTests();
+            }
+
+            return false;
+        }
+        
+}
+                

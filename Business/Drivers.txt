@@ -1,0 +1,108 @@
+
+using System;
+using System.Data;
+
+public class clsDrivers
+{
+        public enum enDriversMode {AddNew = 0, Update = 1};
+        private enDriversMode _Mode;
+                                        
+        public  DriverID { get; set; }
+	public  PersonID { get; set; }
+	public  CreatedByUserID { get; set; }
+	public  CreatedDate { get; set; }
+	
+        
+        public clsDrivers()
+        {
+                            
+            this.DriverID = -1; 
+	    this.PersonID = -1; 
+	    this.CreatedByUserID = -1; 
+	    this.CreatedDate = null; 
+	    
+
+            _Mode = enDriversMode.AddNew;
+        }
+        
+        
+        private clsDrivers( int DriverID,  int PersonID,  int CreatedByUserID,  object CreatedDate)
+        {
+            this.DriverID = DriverID; 
+	    this.PersonID = PersonID; 
+	    this.CreatedByUserID = CreatedByUserID; 
+	    this.CreatedDate = CreatedDate; 
+	    
+            _Mode = enDriversMode.Update;
+        }
+        
+        
+        
+        public static clsDrivers GetDriversInfoByDriverID(int DriverID)
+        {
+            
+             int PersonID = -1; 
+	     int CreatedByUserID = -1; 
+	     object CreatedDate = null; 
+	    
+
+            bool IsFound = clsDriversData.GetDriversInfoDriverID(DriverID, ref  PersonID, ref  CreatedByUserID, ref  CreatedDate);
+
+            if (IsFound)
+            {
+                return new clsDrivers( DriverID,  PersonID,  CreatedByUserID,  CreatedDate);
+            }
+            else
+            {
+                return null;
+            }
+        }
+        
+        
+        
+        public static bool IsDriversExistByDriverID(int DriverID)
+        {
+            return clsDriversData.IsDriversExistByDriverID(DriverID);
+        }
+        
+            
+        
+            private bool _UpdateDrivers()
+            {
+                return clsDriversData.UpdateDrivers(this. DriverID, this. PersonID, this. CreatedByUserID, this. CreatedDate);
+            }
+            
+        
+        public static DataTable GetAllDrivers()
+        {
+            return clsDriversData.GetAllDrivers();
+        }
+        
+        
+        public bool Save()
+        {
+            switch (_Mode)
+            {
+                case enDriversMode.AddNew:
+
+                    if (_AddNewDrivers())
+                    {
+                        _Mode = enDriversMode.Update;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+
+                case enDriversMode.Update:
+
+                    return _UpdateDrivers();
+            }
+
+            return false;
+        }
+        
+}
+                

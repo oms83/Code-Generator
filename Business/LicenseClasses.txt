@@ -1,0 +1,116 @@
+
+using System;
+using System.Data;
+
+public class clsLicenseClasses
+{
+        public enum enLicenseClassesMode {AddNew = 0, Update = 1};
+        private enLicenseClassesMode _Mode;
+                                        
+        public  LicenseClassID { get; set; }
+	public  ClassName { get; set; }
+	public  ClassDescription { get; set; }
+	public  MinimumAllowedAge { get; set; }
+	public  DefaultValidityLength { get; set; }
+	public  ClassFees { get; set; }
+	
+        
+        public clsLicenseClasses()
+        {
+                            
+            this.LicenseClassID = -1; 
+	    this.ClassName = string.Empty; 
+	    this.ClassDescription = string.Empty; 
+	    this.MinimumAllowedAge = 0; 
+	    this.DefaultValidityLength = 0; 
+	    this.ClassFees = 0; 
+	    
+
+            _Mode = enLicenseClassesMode.AddNew;
+        }
+        
+        
+        private clsLicenseClasses( int LicenseClassID,  string ClassName,  string ClassDescription,  byte MinimumAllowedAge,  byte DefaultValidityLength,  decimal ClassFees)
+        {
+            this.LicenseClassID = LicenseClassID; 
+	    this.ClassName = ClassName; 
+	    this.ClassDescription = ClassDescription; 
+	    this.MinimumAllowedAge = MinimumAllowedAge; 
+	    this.DefaultValidityLength = DefaultValidityLength; 
+	    this.ClassFees = ClassFees; 
+	    
+            _Mode = enLicenseClassesMode.Update;
+        }
+        
+        
+        
+        public static clsLicenseClasses GetLicenseClassesInfoByLicenseClassID(int LicenseClassID)
+        {
+            
+             string ClassName = string.Empty; 
+	     string ClassDescription = string.Empty; 
+	     byte MinimumAllowedAge = 0; 
+	     byte DefaultValidityLength = 0; 
+	     decimal ClassFees = 0; 
+	    
+
+            bool IsFound = clsLicenseClassesData.GetLicenseClassesInfoLicenseClassID(LicenseClassID, ref  ClassName, ref  ClassDescription, ref  MinimumAllowedAge, ref  DefaultValidityLength, ref  ClassFees);
+
+            if (IsFound)
+            {
+                return new clsLicenseClasses( LicenseClassID,  ClassName,  ClassDescription,  MinimumAllowedAge,  DefaultValidityLength,  ClassFees);
+            }
+            else
+            {
+                return null;
+            }
+        }
+        
+        
+        
+        public static bool IsLicenseClassesExistByLicenseClassID(int LicenseClassID)
+        {
+            return clsLicenseClassesData.IsLicenseClassesExistByLicenseClassID(LicenseClassID);
+        }
+        
+            
+        
+            private bool _UpdateLicenseClasses()
+            {
+                return clsLicenseClassesData.UpdateLicenseClasses(this. LicenseClassID, this. ClassName, this. ClassDescription, this. MinimumAllowedAge, this. DefaultValidityLength, this. ClassFees);
+            }
+            
+        
+        public static DataTable GetAllLicenseClasses()
+        {
+            return clsLicenseClassesData.GetAllLicenseClasses();
+        }
+        
+        
+        public bool Save()
+        {
+            switch (_Mode)
+            {
+                case enLicenseClassesMode.AddNew:
+
+                    if (_AddNewLicenseClasses())
+                    {
+                        _Mode = enLicenseClassesMode.Update;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+
+                case enLicenseClassesMode.Update:
+
+                    return _UpdateLicenseClasses();
+            }
+
+            return false;
+        }
+        
+}
+                

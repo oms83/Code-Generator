@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\omerm\\Desktop\\Code Generator\\WindowsFormsApp1\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1A57B12C-D51F-45F4-8A53-B09B0CAD9430}|Home.csproj|c:\\users\\omerm\\desktop\\code generator\\windowsformsapp1\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{1A57B12C-D51F-45F4-8A53-B09B0CAD9430}|Home.csproj|solutionrelative:main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{1A57B12C-D51F-45F4-8A53-B09B0CAD9430}|Code Generator.csproj|C:\\Users\\omerm\\Desktop\\Code Generator\\WindowsFormsApp1\\login\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A57B12C-D51F-45F4-8A53-B09B0CAD9430}|Code Generator.csproj|solutionrelative:login\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1A57B12C-D51F-45F4-8A53-B09B0CAD9430}|Home.csproj|C:\\Users\\omerm\\Desktop\\Code Generator\\WindowsFormsApp1\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1A57B12C-D51F-45F4-8A53-B09B0CAD9430}|Home.csproj|solutionrelative:main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1A57B12C-D51F-45F4-8A53-B09B0CAD9430}|Code Generator.csproj|C:\\Users\\omerm\\Desktop\\Code Generator\\WindowsFormsApp1\\login\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{1A57B12C-D51F-45F4-8A53-B09B0CAD9430}|Code Generator.csproj|solutionrelative:login\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A57B12C-D51F-45F4-8A53-B09B0CAD9430}|Code Generator.csproj|c:\\users\\omerm\\desktop\\code generator\\windowsformsapp1\\login\\loggin\\loggin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A57B12C-D51F-45F4-8A53-B09B0CAD9430}|Code Generator.csproj|solutionrelative:login\\loggin\\loggin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A57B12C-D51F-45F4-8A53-B09B0CAD9430}|Code Generator.csproj|C:\\Users\\omerm\\Desktop\\Code Generator\\WindowsFormsApp1\\login\\by windows registry\\loginbyregistry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A57B12C-D51F-45F4-8A53-B09B0CAD9430}|Code Generator.csproj|solutionrelative:login\\by windows registry\\loginbyregistry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,29 +30,53 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "main.cs",
-              "DocumentMoniker": "C:\\Users\\omerm\\Desktop\\Code Generator\\WindowsFormsApp1\\main.cs",
-              "RelativeDocumentMoniker": "main.cs",
-              "ToolTip": "C:\\Users\\omerm\\Desktop\\Code Generator\\WindowsFormsApp1\\main.cs",
-              "RelativeToolTip": "main.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAAA4AAAAFAAAA",
+              "DocumentIndex": 2,
+              "Title": "Loggin.cs",
+              "DocumentMoniker": "C:\\Users\\omerm\\Desktop\\Code Generator\\WindowsFormsApp1\\Login\\Loggin\\Loggin.cs",
+              "RelativeDocumentMoniker": "Login\\Loggin\\Loggin.cs",
+              "ToolTip": "C:\\Users\\omerm\\Desktop\\Code Generator\\WindowsFormsApp1\\Login\\Loggin\\Loggin.cs",
+              "RelativeToolTip": "Login\\Loggin\\Loggin.cs",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAAABwAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-09T08:01:33.383Z",
-              "IsPinned": true,
+              "WhenOpened": "2024-05-19T09:30:48.934Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "main.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\omerm\\Desktop\\Code Generator\\WindowsFormsApp1\\main.cs",
-              "RelativeDocumentMoniker": "main.cs",
-              "ToolTip": "C:\\Users\\omerm\\Desktop\\Code Generator\\WindowsFormsApp1\\main.cs [Design]",
-              "RelativeToolTip": "main.cs [Design]",
+              "Title": "frmLogin.cs",
+              "DocumentMoniker": "C:\\Users\\omerm\\Desktop\\Code Generator\\WindowsFormsApp1\\Login\\frmLogin.cs",
+              "RelativeDocumentMoniker": "Login\\frmLogin.cs",
+              "ToolTip": "C:\\Users\\omerm\\Desktop\\Code Generator\\WindowsFormsApp1\\Login\\frmLogin.cs",
+              "RelativeToolTip": "Login\\frmLogin.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAjwB0AAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-09T07:43:30.606Z",
+              "WhenOpened": "2024-05-18T11:09:01.209Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "frmLogin.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\omerm\\Desktop\\Code Generator\\WindowsFormsApp1\\Login\\frmLogin.cs",
+              "RelativeDocumentMoniker": "Login\\frmLogin.cs",
+              "ToolTip": "C:\\Users\\omerm\\Desktop\\Code Generator\\WindowsFormsApp1\\Login\\frmLogin.cs [Design]",
+              "RelativeToolTip": "Login\\frmLogin.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-18T10:54:50.206Z",
               "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "LoginByRegistry.cs",
+              "DocumentMoniker": "C:\\Users\\omerm\\Desktop\\Code Generator\\WindowsFormsApp1\\Login\\By Windows Registry\\LoginByRegistry.cs",
+              "RelativeDocumentMoniker": "Login\\By Windows Registry\\LoginByRegistry.cs",
+              "ToolTip": "C:\\Users\\omerm\\Desktop\\Code Generator\\WindowsFormsApp1\\Login\\By Windows Registry\\LoginByRegistry.cs",
+              "RelativeToolTip": "Login\\By Windows Registry\\LoginByRegistry.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAjwB8AAABAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-18T10:54:05.787Z"
             }
           ]
         }

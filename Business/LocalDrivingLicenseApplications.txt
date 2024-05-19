@@ -1,0 +1,104 @@
+
+using System;
+using System.Data;
+
+public class clsLocalDrivingLicenseApplications
+{
+        public enum enLocalDrivingLicenseApplicationsMode {AddNew = 0, Update = 1};
+        private enLocalDrivingLicenseApplicationsMode _Mode;
+                                        
+        public  LocalDrivingLicenseApplicationID { get; set; }
+	public  ApplicationID { get; set; }
+	public  LicenseClassID { get; set; }
+	
+        
+        public clsLocalDrivingLicenseApplications()
+        {
+                            
+            this.LocalDrivingLicenseApplicationID = -1; 
+	    this.ApplicationID = -1; 
+	    this.LicenseClassID = -1; 
+	    
+
+            _Mode = enLocalDrivingLicenseApplicationsMode.AddNew;
+        }
+        
+        
+        private clsLocalDrivingLicenseApplications( int LocalDrivingLicenseApplicationID,  int ApplicationID,  int LicenseClassID)
+        {
+            this.LocalDrivingLicenseApplicationID = LocalDrivingLicenseApplicationID; 
+	    this.ApplicationID = ApplicationID; 
+	    this.LicenseClassID = LicenseClassID; 
+	    
+            _Mode = enLocalDrivingLicenseApplicationsMode.Update;
+        }
+        
+        
+        
+        public static clsLocalDrivingLicenseApplications GetLocalDrivingLicenseApplicationsInfoByLocalDrivingLicenseApplicationID(int LocalDrivingLicenseApplicationID)
+        {
+            
+             int ApplicationID = -1; 
+	     int LicenseClassID = -1; 
+	    
+
+            bool IsFound = clsLocalDrivingLicenseApplicationsData.GetLocalDrivingLicenseApplicationsInfoLocalDrivingLicenseApplicationID(LocalDrivingLicenseApplicationID, ref  ApplicationID, ref  LicenseClassID);
+
+            if (IsFound)
+            {
+                return new clsLocalDrivingLicenseApplications( LocalDrivingLicenseApplicationID,  ApplicationID,  LicenseClassID);
+            }
+            else
+            {
+                return null;
+            }
+        }
+        
+        
+        
+        public static bool IsLocalDrivingLicenseApplicationsExistByLocalDrivingLicenseApplicationID(int LocalDrivingLicenseApplicationID)
+        {
+            return clsLocalDrivingLicenseApplicationsData.IsLocalDrivingLicenseApplicationsExistByLocalDrivingLicenseApplicationID(LocalDrivingLicenseApplicationID);
+        }
+        
+            
+        
+            private bool _UpdateLocalDrivingLicenseApplications()
+            {
+                return clsLocalDrivingLicenseApplicationsData.UpdateLocalDrivingLicenseApplications(this. LocalDrivingLicenseApplicationID, this. ApplicationID, this. LicenseClassID);
+            }
+            
+        
+        public static DataTable GetAllLocalDrivingLicenseApplications()
+        {
+            return clsLocalDrivingLicenseApplicationsData.GetAllLocalDrivingLicenseApplications();
+        }
+        
+        
+        public bool Save()
+        {
+            switch (_Mode)
+            {
+                case enLocalDrivingLicenseApplicationsMode.AddNew:
+
+                    if (_AddNewLocalDrivingLicenseApplications())
+                    {
+                        _Mode = enLocalDrivingLicenseApplicationsMode.Update;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+
+                case enLocalDrivingLicenseApplicationsMode.Update:
+
+                    return _UpdateLocalDrivingLicenseApplications();
+            }
+
+            return false;
+        }
+        
+}
+                

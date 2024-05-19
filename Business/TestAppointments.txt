@@ -1,0 +1,124 @@
+
+using System;
+using System.Data;
+
+public class clsTestAppointments
+{
+        public enum enTestAppointmentsMode {AddNew = 0, Update = 1};
+        private enTestAppointmentsMode _Mode;
+                                        
+        public  TestAppointmentID { get; set; }
+	public  TestTypeID { get; set; }
+	public  LocalDrivingLicenseApplicationID { get; set; }
+	public  AppointmentDate { get; set; }
+	public  PaidFees { get; set; }
+	public  CreatedByUserID { get; set; }
+	public  IsLocked { get; set; }
+	public  RetakeTestApplicationID { get; set; }
+	
+        
+        public clsTestAppointments()
+        {
+                            
+            this.TestAppointmentID = -1; 
+	    this.TestTypeID = -1; 
+	    this.LocalDrivingLicenseApplicationID = -1; 
+	    this.AppointmentDate = null; 
+	    this.PaidFees = 0; 
+	    this.CreatedByUserID = -1; 
+	    this.IsLocked = true; 
+	    this.RetakeTestApplicationID = -1; 
+	    
+
+            _Mode = enTestAppointmentsMode.AddNew;
+        }
+        
+        
+        private clsTestAppointments( int TestAppointmentID,  int TestTypeID,  int LocalDrivingLicenseApplicationID,  object AppointmentDate,  decimal PaidFees,  int CreatedByUserID,  bool IsLocked,  int RetakeTestApplicationID)
+        {
+            this.TestAppointmentID = TestAppointmentID; 
+	    this.TestTypeID = TestTypeID; 
+	    this.LocalDrivingLicenseApplicationID = LocalDrivingLicenseApplicationID; 
+	    this.AppointmentDate = AppointmentDate; 
+	    this.PaidFees = PaidFees; 
+	    this.CreatedByUserID = CreatedByUserID; 
+	    this.IsLocked = IsLocked; 
+	    this.RetakeTestApplicationID = RetakeTestApplicationID; 
+	    
+            _Mode = enTestAppointmentsMode.Update;
+        }
+        
+        
+        
+        public static clsTestAppointments GetTestAppointmentsInfoByTestAppointmentID(int TestAppointmentID)
+        {
+            
+             int TestTypeID = -1; 
+	     int LocalDrivingLicenseApplicationID = -1; 
+	     object AppointmentDate = null; 
+	     decimal PaidFees = 0; 
+	     int CreatedByUserID = -1; 
+	     bool IsLocked = true; 
+	     int RetakeTestApplicationID = -1; 
+	    
+
+            bool IsFound = clsTestAppointmentsData.GetTestAppointmentsInfoTestAppointmentID(TestAppointmentID, ref  TestTypeID, ref  LocalDrivingLicenseApplicationID, ref  AppointmentDate, ref  PaidFees, ref  CreatedByUserID, ref  IsLocked, ref  RetakeTestApplicationID);
+
+            if (IsFound)
+            {
+                return new clsTestAppointments( TestAppointmentID,  TestTypeID,  LocalDrivingLicenseApplicationID,  AppointmentDate,  PaidFees,  CreatedByUserID,  IsLocked,  RetakeTestApplicationID);
+            }
+            else
+            {
+                return null;
+            }
+        }
+        
+        
+        
+        public static bool IsTestAppointmentsExistByTestAppointmentID(int TestAppointmentID)
+        {
+            return clsTestAppointmentsData.IsTestAppointmentsExistByTestAppointmentID(TestAppointmentID);
+        }
+        
+            
+        
+            private bool _UpdateTestAppointments()
+            {
+                return clsTestAppointmentsData.UpdateTestAppointments(this. TestAppointmentID, this. TestTypeID, this. LocalDrivingLicenseApplicationID, this. AppointmentDate, this. PaidFees, this. CreatedByUserID, this. IsLocked, this. RetakeTestApplicationID);
+            }
+            
+        
+        public static DataTable GetAllTestAppointments()
+        {
+            return clsTestAppointmentsData.GetAllTestAppointments();
+        }
+        
+        
+        public bool Save()
+        {
+            switch (_Mode)
+            {
+                case enTestAppointmentsMode.AddNew:
+
+                    if (_AddNewTestAppointments())
+                    {
+                        _Mode = enTestAppointmentsMode.Update;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+
+                case enTestAppointmentsMode.Update:
+
+                    return _UpdateTestAppointments();
+            }
+
+            return false;
+        }
+        
+}
+                

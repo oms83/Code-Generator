@@ -1,0 +1,112 @@
+
+using System;
+using System.Data;
+
+public class clsUsers
+{
+        public enum enUsersMode {AddNew = 0, Update = 1};
+        private enUsersMode _Mode;
+                                        
+        public  UserID { get; set; }
+	public  PersonID { get; set; }
+	public  UserName { get; set; }
+	public  Password { get; set; }
+	public  IsActive { get; set; }
+	
+        
+        public clsUsers()
+        {
+                            
+            this.UserID = -1; 
+	    this.PersonID = -1; 
+	    this.UserName = string.Empty; 
+	    this.Password = string.Empty; 
+	    this.IsActive = true; 
+	    
+
+            _Mode = enUsersMode.AddNew;
+        }
+        
+        
+        private clsUsers( int UserID,  int PersonID,  string UserName,  string Password,  bool IsActive)
+        {
+            this.UserID = UserID; 
+	    this.PersonID = PersonID; 
+	    this.UserName = UserName; 
+	    this.Password = Password; 
+	    this.IsActive = IsActive; 
+	    
+            _Mode = enUsersMode.Update;
+        }
+        
+        
+        
+        public static clsUsers GetUsersInfoByUserID(int UserID)
+        {
+            
+             int PersonID = -1; 
+	     string UserName = string.Empty; 
+	     string Password = string.Empty; 
+	     bool IsActive = true; 
+	    
+
+            bool IsFound = clsUsersData.GetUsersInfoUserID(UserID, ref  PersonID, ref  UserName, ref  Password, ref  IsActive);
+
+            if (IsFound)
+            {
+                return new clsUsers( UserID,  PersonID,  UserName,  Password,  IsActive);
+            }
+            else
+            {
+                return null;
+            }
+        }
+        
+        
+        
+        public static bool IsUsersExistByUserID(int UserID)
+        {
+            return clsUsersData.IsUsersExistByUserID(UserID);
+        }
+        
+            
+        
+            private bool _UpdateUsers()
+            {
+                return clsUsersData.UpdateUsers(this. UserID, this. PersonID, this. UserName, this. Password, this. IsActive);
+            }
+            
+        
+        public static DataTable GetAllUsers()
+        {
+            return clsUsersData.GetAllUsers();
+        }
+        
+        
+        public bool Save()
+        {
+            switch (_Mode)
+            {
+                case enUsersMode.AddNew:
+
+                    if (_AddNewUsers())
+                    {
+                        _Mode = enUsersMode.Update;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+
+                case enUsersMode.Update:
+
+                    return _UpdateUsers();
+            }
+
+            return false;
+        }
+        
+}
+                

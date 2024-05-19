@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApp1
 {
-    partial class main
+    partial class frmMain
     {
         /// <summary>
         /// Required designer variable.
@@ -37,15 +37,15 @@
             this.dgvColumns = new Guna.UI2.WinForms.Guna2DataGridView();
             this.cmsSetUnique = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
             this.setAsUniqeKeyToolStripMenuItem = new System.Windows.Forms.ToolStripSeparator();
+            this.setAsUniqueKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.removePrimarilityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.cmbTables = new Guna.UI2.WinForms.Guna2ComboBox();
             this.btnGenerate = new Guna.UI2.WinForms.Guna2Button();
             this.btnReset = new Guna.UI2.WinForms.Guna2Button();
             this.lblTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.btnClose = new Guna.UI2.WinForms.Guna2CirclePictureBox();
-            this.setAsUniqueKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.removePrimarilityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.guna2CircleProgressBar1 = new Guna.UI2.WinForms.Guna2CircleProgressBar();
             this.lblMessage = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvColumns)).BeginInit();
@@ -69,7 +69,7 @@
             this.cmbDatabases.ItemHeight = 30;
             this.cmbDatabases.Items.AddRange(new object[] {
             "None"});
-            this.cmbDatabases.Location = new System.Drawing.Point(9, 98);
+            this.cmbDatabases.Location = new System.Drawing.Point(120, 210);
             this.cmbDatabases.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbDatabases.Name = "cmbDatabases";
             this.cmbDatabases.Size = new System.Drawing.Size(377, 36);
@@ -110,7 +110,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvColumns.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvColumns.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(56)))), ((int)(((byte)(62)))));
-            this.dgvColumns.Location = new System.Drawing.Point(9, 142);
+            this.dgvColumns.Location = new System.Drawing.Point(120, 254);
             this.dgvColumns.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgvColumns.Name = "dgvColumns";
             this.dgvColumns.ReadOnly = true;
@@ -180,10 +180,29 @@
             this.setAsUniqeKeyToolStripMenuItem.Name = "setAsUniqeKeyToolStripMenuItem";
             this.setAsUniqeKeyToolStripMenuItem.Size = new System.Drawing.Size(301, 6);
             // 
+            // setAsUniqueKeyToolStripMenuItem
+            // 
+            this.setAsUniqueKeyToolStripMenuItem.Font = new System.Drawing.Font("Cascadia Code", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.setAsUniqueKeyToolStripMenuItem.Image = global::WindowsFormsApp1.Properties.Resources.primary_key;
+            this.setAsUniqueKeyToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Gray;
+            this.setAsUniqueKeyToolStripMenuItem.Name = "setAsUniqueKeyToolStripMenuItem";
+            this.setAsUniqueKeyToolStripMenuItem.Size = new System.Drawing.Size(304, 32);
+            this.setAsUniqueKeyToolStripMenuItem.Text = "Set as unique key";
+            this.setAsUniqueKeyToolStripMenuItem.Click += new System.EventHandler(this.setAsUniqueKeyToolStripMenuItem_Click);
+            // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(301, 6);
+            // 
+            // removePrimarilityToolStripMenuItem
+            // 
+            this.removePrimarilityToolStripMenuItem.Font = new System.Drawing.Font("Cascadia Code", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.removePrimarilityToolStripMenuItem.Image = global::WindowsFormsApp1.Properties.Resources.padlock;
+            this.removePrimarilityToolStripMenuItem.Name = "removePrimarilityToolStripMenuItem";
+            this.removePrimarilityToolStripMenuItem.Size = new System.Drawing.Size(304, 32);
+            this.removePrimarilityToolStripMenuItem.Text = "remove primarility";
+            this.removePrimarilityToolStripMenuItem.Click += new System.EventHandler(this.removePrimarilityToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -204,7 +223,7 @@
             this.cmbTables.Font = new System.Drawing.Font("Cascadia Code SemiBold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbTables.ForeColor = System.Drawing.Color.MediumTurquoise;
             this.cmbTables.ItemHeight = 30;
-            this.cmbTables.Location = new System.Drawing.Point(391, 98);
+            this.cmbTables.Location = new System.Drawing.Point(502, 210);
             this.cmbTables.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cmbTables.Name = "cmbTables";
             this.cmbTables.Size = new System.Drawing.Size(620, 36);
@@ -219,12 +238,12 @@
             this.btnGenerate.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnGenerate.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.btnGenerate.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(87)))), ((int)(((byte)(166)))), ((int)(((byte)(74)))));
-            this.btnGenerate.Font = new System.Drawing.Font("Cascadia Code SemiBold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerate.Font = new System.Drawing.Font("Cascadia Code", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGenerate.ForeColor = System.Drawing.Color.White;
-            this.btnGenerate.Location = new System.Drawing.Point(466, 510);
+            this.btnGenerate.Location = new System.Drawing.Point(551, 630);
             this.btnGenerate.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnGenerate.Name = "btnGenerate";
-            this.btnGenerate.Size = new System.Drawing.Size(180, 45);
+            this.btnGenerate.Size = new System.Drawing.Size(206, 53);
             this.btnGenerate.TabIndex = 7;
             this.btnGenerate.Text = "Generate";
             this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
@@ -237,12 +256,12 @@
             this.btnReset.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnReset.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.btnReset.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(87)))), ((int)(((byte)(166)))), ((int)(((byte)(74)))));
-            this.btnReset.Font = new System.Drawing.Font("Cascadia Code SemiBold", 10.8F, System.Drawing.FontStyle.Bold);
+            this.btnReset.Font = new System.Drawing.Font("Cascadia Code", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReset.ForeColor = System.Drawing.Color.White;
-            this.btnReset.Location = new System.Drawing.Point(664, 510);
+            this.btnReset.Location = new System.Drawing.Point(775, 630);
             this.btnReset.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(180, 45);
+            this.btnReset.Size = new System.Drawing.Size(206, 53);
             this.btnReset.TabIndex = 8;
             this.btnReset.Text = "Reset";
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
@@ -250,11 +269,11 @@
             // lblTitle
             // 
             this.lblTitle.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitle.Font = new System.Drawing.Font("Cascadia Code", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Font = new System.Drawing.Font("Cascadia Code", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(164)))), ((int)(((byte)(229)))));
-            this.lblTitle.Location = new System.Drawing.Point(466, 12);
+            this.lblTitle.Location = new System.Drawing.Point(461, 44);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(395, 64);
+            this.lblTitle.Size = new System.Drawing.Size(661, 108);
             this.lblTitle.TabIndex = 10;
             this.lblTitle.Text = "Code Generator";
             // 
@@ -263,7 +282,7 @@
             this.btnClose.FillColor = System.Drawing.Color.Red;
             this.btnClose.Image = global::WindowsFormsApp1.Properties.Resources.eradicate;
             this.btnClose.ImageRotate = 0F;
-            this.btnClose.Location = new System.Drawing.Point(1231, 12);
+            this.btnClose.Location = new System.Drawing.Point(1462, 12);
             this.btnClose.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnClose.Name = "btnClose";
             this.btnClose.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
@@ -273,31 +292,12 @@
             this.btnClose.TabStop = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // setAsUniqueKeyToolStripMenuItem
-            // 
-            this.setAsUniqueKeyToolStripMenuItem.Font = new System.Drawing.Font("Cascadia Code", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.setAsUniqueKeyToolStripMenuItem.Image = global::WindowsFormsApp1.Properties.Resources.primary_key;
-            this.setAsUniqueKeyToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Gray;
-            this.setAsUniqueKeyToolStripMenuItem.Name = "setAsUniqueKeyToolStripMenuItem";
-            this.setAsUniqueKeyToolStripMenuItem.Size = new System.Drawing.Size(304, 32);
-            this.setAsUniqueKeyToolStripMenuItem.Text = "Set as unique key";
-            this.setAsUniqueKeyToolStripMenuItem.Click += new System.EventHandler(this.setAsUniqueKeyToolStripMenuItem_Click);
-            // 
-            // removePrimarilityToolStripMenuItem
-            // 
-            this.removePrimarilityToolStripMenuItem.Font = new System.Drawing.Font("Cascadia Code", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.removePrimarilityToolStripMenuItem.Image = global::WindowsFormsApp1.Properties.Resources.padlock;
-            this.removePrimarilityToolStripMenuItem.Name = "removePrimarilityToolStripMenuItem";
-            this.removePrimarilityToolStripMenuItem.Size = new System.Drawing.Size(304, 32);
-            this.removePrimarilityToolStripMenuItem.Text = "remove primarility";
-            this.removePrimarilityToolStripMenuItem.Click += new System.EventHandler(this.removePrimarilityToolStripMenuItem_Click);
-            // 
             // guna2CircleProgressBar1
             // 
             this.guna2CircleProgressBar1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(213)))), ((int)(((byte)(218)))), ((int)(((byte)(223)))));
             this.guna2CircleProgressBar1.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.guna2CircleProgressBar1.ForeColor = System.Drawing.Color.White;
-            this.guna2CircleProgressBar1.Location = new System.Drawing.Point(611, 570);
+            this.guna2CircleProgressBar1.Location = new System.Drawing.Point(722, 698);
             this.guna2CircleProgressBar1.Minimum = 0;
             this.guna2CircleProgressBar1.Name = "guna2CircleProgressBar1";
             this.guna2CircleProgressBar1.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(157)))), ((int)(((byte)(216)))));
@@ -314,18 +314,18 @@
             this.lblMessage.AutoSize = true;
             this.lblMessage.Font = new System.Drawing.Font("Cascadia Code SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMessage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(87)))), ((int)(((byte)(169)))), ((int)(((byte)(74)))));
-            this.lblMessage.Location = new System.Drawing.Point(364, 613);
+            this.lblMessage.Location = new System.Drawing.Point(475, 741);
             this.lblMessage.Name = "lblMessage";
             this.lblMessage.Size = new System.Drawing.Size(804, 27);
             this.lblMessage.TabIndex = 12;
             this.lblMessage.Text = "24 classes have been generated for business and data access layers";
             // 
-            // main
+            // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.ClientSize = new System.Drawing.Size(1294, 677);
+            this.ClientSize = new System.Drawing.Size(1525, 760);
             this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.guna2CircleProgressBar1);
             this.Controls.Add(this.lblTitle);
@@ -338,9 +338,10 @@
             this.Font = new System.Drawing.Font("Cascadia Code SemiBold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.Name = "main";
+            this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.main_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvColumns)).EndInit();
             this.cmsSetUnique.ResumeLayout(false);

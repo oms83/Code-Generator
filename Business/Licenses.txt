@@ -1,0 +1,136 @@
+
+using System;
+using System.Data;
+
+public class clsLicenses
+{
+        public enum enLicensesMode {AddNew = 0, Update = 1};
+        private enLicensesMode _Mode;
+                                        
+        public  LicenseID { get; set; }
+	public  ApplicationID { get; set; }
+	public  DriverID { get; set; }
+	public  LicenseClass { get; set; }
+	public  IssueDate { get; set; }
+	public  ExpirationDate { get; set; }
+	public  Notes { get; set; }
+	public  PaidFees { get; set; }
+	public  IsActive { get; set; }
+	public  IssueReason { get; set; }
+	public  CreatedByUserID { get; set; }
+	
+        
+        public clsLicenses()
+        {
+                            
+            this.LicenseID = -1; 
+	    this.ApplicationID = -1; 
+	    this.DriverID = -1; 
+	    this.LicenseClass = -1; 
+	    this.IssueDate = DateTime.Now; 
+	    this.ExpirationDate = DateTime.Now; 
+	    this.Notes = string.Empty; 
+	    this.PaidFees = 0; 
+	    this.IsActive = true; 
+	    this.IssueReason = 0; 
+	    this.CreatedByUserID = -1; 
+	    
+
+            _Mode = enLicensesMode.AddNew;
+        }
+        
+        
+        private clsLicenses( int LicenseID,  int ApplicationID,  int DriverID,  int LicenseClass,  DateTime IssueDate,  DateTime ExpirationDate,  string Notes,  decimal PaidFees,  bool IsActive,  byte IssueReason,  int CreatedByUserID)
+        {
+            this.LicenseID = LicenseID; 
+	    this.ApplicationID = ApplicationID; 
+	    this.DriverID = DriverID; 
+	    this.LicenseClass = LicenseClass; 
+	    this.IssueDate = IssueDate; 
+	    this.ExpirationDate = ExpirationDate; 
+	    this.Notes = Notes; 
+	    this.PaidFees = PaidFees; 
+	    this.IsActive = IsActive; 
+	    this.IssueReason = IssueReason; 
+	    this.CreatedByUserID = CreatedByUserID; 
+	    
+            _Mode = enLicensesMode.Update;
+        }
+        
+        
+        
+        public static clsLicenses GetLicensesInfoByLicenseID(int LicenseID)
+        {
+            
+             int ApplicationID = -1; 
+	     int DriverID = -1; 
+	     int LicenseClass = -1; 
+	     DateTime IssueDate = DateTime.Now; 
+	     DateTime ExpirationDate = DateTime.Now; 
+	     string Notes = string.Empty; 
+	     decimal PaidFees = 0; 
+	     bool IsActive = true; 
+	     byte IssueReason = 0; 
+	     int CreatedByUserID = -1; 
+	    
+
+            bool IsFound = clsLicensesData.GetLicensesInfoLicenseID(LicenseID, ref  ApplicationID, ref  DriverID, ref  LicenseClass, ref  IssueDate, ref  ExpirationDate, ref  Notes, ref  PaidFees, ref  IsActive, ref  IssueReason, ref  CreatedByUserID);
+
+            if (IsFound)
+            {
+                return new clsLicenses( LicenseID,  ApplicationID,  DriverID,  LicenseClass,  IssueDate,  ExpirationDate,  Notes,  PaidFees,  IsActive,  IssueReason,  CreatedByUserID);
+            }
+            else
+            {
+                return null;
+            }
+        }
+        
+        
+        
+        public static bool IsLicensesExistByLicenseID(int LicenseID)
+        {
+            return clsLicensesData.IsLicensesExistByLicenseID(LicenseID);
+        }
+        
+            
+        
+            private bool _UpdateLicenses()
+            {
+                return clsLicensesData.UpdateLicenses(this. LicenseID, this. ApplicationID, this. DriverID, this. LicenseClass, this. IssueDate, this. ExpirationDate, this. Notes, this. PaidFees, this. IsActive, this. IssueReason, this. CreatedByUserID);
+            }
+            
+        
+        public static DataTable GetAllLicenses()
+        {
+            return clsLicensesData.GetAllLicenses();
+        }
+        
+        
+        public bool Save()
+        {
+            switch (_Mode)
+            {
+                case enLicensesMode.AddNew:
+
+                    if (_AddNewLicenses())
+                    {
+                        _Mode = enLicensesMode.Update;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+
+                case enLicensesMode.Update:
+
+                    return _UpdateLicenses();
+            }
+
+            return false;
+        }
+        
+}
+                

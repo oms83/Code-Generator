@@ -1,0 +1,144 @@
+
+using System;
+using System.Data;
+
+public class clsPeople
+{
+        public enum enPeopleMode {AddNew = 0, Update = 1};
+        private enPeopleMode _Mode;
+                                        
+        public  PersonID { get; set; }
+	public  NationalNo { get; set; }
+	public  FirstName { get; set; }
+	public  SecondName { get; set; }
+	public  ThirdName { get; set; }
+	public  LastName { get; set; }
+	public  DateOfBirth { get; set; }
+	public  Gender { get; set; }
+	public  Address { get; set; }
+	public  Phone { get; set; }
+	public  Email { get; set; }
+	public  NationalityCountryID { get; set; }
+	public  ImagePath { get; set; }
+	
+        
+        public clsPeople()
+        {
+                            
+            this.PersonID = -1; 
+	    this.NationalNo = string.Empty; 
+	    this.FirstName = string.Empty; 
+	    this.SecondName = string.Empty; 
+	    this.ThirdName = string.Empty; 
+	    this.LastName = string.Empty; 
+	    this.DateOfBirth = DateTime.Now; 
+	    this.Gender = 0; 
+	    this.Address = string.Empty; 
+	    this.Phone = string.Empty; 
+	    this.Email = string.Empty; 
+	    this.NationalityCountryID = -1; 
+	    this.ImagePath = string.Empty; 
+	    
+
+            _Mode = enPeopleMode.AddNew;
+        }
+        
+        
+        private clsPeople( int PersonID,  string NationalNo,  string FirstName,  string SecondName,  string ThirdName,  string LastName,  DateTime DateOfBirth,  byte Gender,  string Address,  string Phone,  string Email,  int NationalityCountryID,  string ImagePath)
+        {
+            this.PersonID = PersonID; 
+	    this.NationalNo = NationalNo; 
+	    this.FirstName = FirstName; 
+	    this.SecondName = SecondName; 
+	    this.ThirdName = ThirdName; 
+	    this.LastName = LastName; 
+	    this.DateOfBirth = DateOfBirth; 
+	    this.Gender = Gender; 
+	    this.Address = Address; 
+	    this.Phone = Phone; 
+	    this.Email = Email; 
+	    this.NationalityCountryID = NationalityCountryID; 
+	    this.ImagePath = ImagePath; 
+	    
+            _Mode = enPeopleMode.Update;
+        }
+        
+        
+        
+        public static clsPeople GetPeopleInfoByPersonID(int PersonID)
+        {
+            
+             string NationalNo = string.Empty; 
+	     string FirstName = string.Empty; 
+	     string SecondName = string.Empty; 
+	     string ThirdName = string.Empty; 
+	     string LastName = string.Empty; 
+	     DateTime DateOfBirth = DateTime.Now; 
+	     byte Gender = 0; 
+	     string Address = string.Empty; 
+	     string Phone = string.Empty; 
+	     string Email = string.Empty; 
+	     int NationalityCountryID = -1; 
+	     string ImagePath = string.Empty; 
+	    
+
+            bool IsFound = clsPeopleData.GetPeopleInfoPersonID(PersonID, ref  NationalNo, ref  FirstName, ref  SecondName, ref  ThirdName, ref  LastName, ref  DateOfBirth, ref  Gender, ref  Address, ref  Phone, ref  Email, ref  NationalityCountryID, ref  ImagePath);
+
+            if (IsFound)
+            {
+                return new clsPeople( PersonID,  NationalNo,  FirstName,  SecondName,  ThirdName,  LastName,  DateOfBirth,  Gender,  Address,  Phone,  Email,  NationalityCountryID,  ImagePath);
+            }
+            else
+            {
+                return null;
+            }
+        }
+        
+        
+        
+        public static bool IsPeopleExistByPersonID(int PersonID)
+        {
+            return clsPeopleData.IsPeopleExistByPersonID(PersonID);
+        }
+        
+            
+        
+            private bool _UpdatePeople()
+            {
+                return clsPeopleData.UpdatePeople(this. PersonID, this. NationalNo, this. FirstName, this. SecondName, this. ThirdName, this. LastName, this. DateOfBirth, this. Gender, this. Address, this. Phone, this. Email, this. NationalityCountryID, this. ImagePath);
+            }
+            
+        
+        public static DataTable GetAllPeople()
+        {
+            return clsPeopleData.GetAllPeople();
+        }
+        
+        
+        public bool Save()
+        {
+            switch (_Mode)
+            {
+                case enPeopleMode.AddNew:
+
+                    if (_AddNewPeople())
+                    {
+                        _Mode = enPeopleMode.Update;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+
+                case enPeopleMode.Update:
+
+                    return _UpdatePeople();
+            }
+
+            return false;
+        }
+        
+}
+                

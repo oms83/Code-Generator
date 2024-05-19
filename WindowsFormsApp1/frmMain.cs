@@ -11,11 +11,11 @@ using WindowsFormsApp1.Layers.Files;
 
 namespace WindowsFormsApp1
 {
-    public partial class main : Form
+    public partial class frmMain : Form
     {
         Dictionary<string, List<clsRow>> _AllDataOfDB = new Dictionary<string, List<clsRow>>();
         List<clsRow> _AllDataOfTable = new List<clsRow>();
-        public main()
+        public frmMain()
         {
             InitializeComponent();
         }

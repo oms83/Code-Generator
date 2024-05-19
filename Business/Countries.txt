@@ -1,0 +1,100 @@
+
+using System;
+using System.Data;
+
+public class clsCountries
+{
+        public enum enCountriesMode {AddNew = 0, Update = 1};
+        private enCountriesMode _Mode;
+                                        
+        public  CountryID { get; set; }
+	public  CountryName { get; set; }
+	
+        
+        public clsCountries()
+        {
+                            
+            this.CountryID = -1; 
+	    this.CountryName = string.Empty; 
+	    
+
+            _Mode = enCountriesMode.AddNew;
+        }
+        
+        
+        private clsCountries( int CountryID,  string CountryName)
+        {
+            this.CountryID = CountryID; 
+	    this.CountryName = CountryName; 
+	    
+            _Mode = enCountriesMode.Update;
+        }
+        
+        
+        
+        public static clsCountries GetCountriesInfoByCountryID(int CountryID)
+        {
+            
+             string CountryName = string.Empty; 
+	    
+
+            bool IsFound = clsCountriesData.GetCountriesInfoCountryID(CountryID, ref  CountryName);
+
+            if (IsFound)
+            {
+                return new clsCountries( CountryID,  CountryName);
+            }
+            else
+            {
+                return null;
+            }
+        }
+        
+        
+        
+        public static bool IsCountriesExistByCountryID(int CountryID)
+        {
+            return clsCountriesData.IsCountriesExistByCountryID(CountryID);
+        }
+        
+            
+        
+            private bool _UpdateCountries()
+            {
+                return clsCountriesData.UpdateCountries(this. CountryID, this. CountryName);
+            }
+            
+        
+        public static DataTable GetAllCountries()
+        {
+            return clsCountriesData.GetAllCountries();
+        }
+        
+        
+        public bool Save()
+        {
+            switch (_Mode)
+            {
+                case enCountriesMode.AddNew:
+
+                    if (_AddNewCountries())
+                    {
+                        _Mode = enCountriesMode.Update;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+
+                case enCountriesMode.Update:
+
+                    return _UpdateCountries();
+            }
+
+            return false;
+        }
+        
+}
+                

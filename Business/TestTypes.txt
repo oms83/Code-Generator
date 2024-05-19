@@ -1,0 +1,108 @@
+
+using System;
+using System.Data;
+
+public class clsTestTypes
+{
+        public enum enTestTypesMode {AddNew = 0, Update = 1};
+        private enTestTypesMode _Mode;
+                                        
+        public  TestTypeID { get; set; }
+	public  TestTypeTitle { get; set; }
+	public  TestTypeDescription { get; set; }
+	public  TestTypeFees { get; set; }
+	
+        
+        public clsTestTypes()
+        {
+                            
+            this.TestTypeID = -1; 
+	    this.TestTypeTitle = string.Empty; 
+	    this.TestTypeDescription = string.Empty; 
+	    this.TestTypeFees = 0; 
+	    
+
+            _Mode = enTestTypesMode.AddNew;
+        }
+        
+        
+        private clsTestTypes( int TestTypeID,  string TestTypeTitle,  string TestTypeDescription,  decimal TestTypeFees)
+        {
+            this.TestTypeID = TestTypeID; 
+	    this.TestTypeTitle = TestTypeTitle; 
+	    this.TestTypeDescription = TestTypeDescription; 
+	    this.TestTypeFees = TestTypeFees; 
+	    
+            _Mode = enTestTypesMode.Update;
+        }
+        
+        
+        
+        public static clsTestTypes GetTestTypesInfoByTestTypeID(int TestTypeID)
+        {
+            
+             string TestTypeTitle = string.Empty; 
+	     string TestTypeDescription = string.Empty; 
+	     decimal TestTypeFees = 0; 
+	    
+
+            bool IsFound = clsTestTypesData.GetTestTypesInfoTestTypeID(TestTypeID, ref  TestTypeTitle, ref  TestTypeDescription, ref  TestTypeFees);
+
+            if (IsFound)
+            {
+                return new clsTestTypes( TestTypeID,  TestTypeTitle,  TestTypeDescription,  TestTypeFees);
+            }
+            else
+            {
+                return null;
+            }
+        }
+        
+        
+        
+        public static bool IsTestTypesExistByTestTypeID(int TestTypeID)
+        {
+            return clsTestTypesData.IsTestTypesExistByTestTypeID(TestTypeID);
+        }
+        
+            
+        
+            private bool _UpdateTestTypes()
+            {
+                return clsTestTypesData.UpdateTestTypes(this. TestTypeID, this. TestTypeTitle, this. TestTypeDescription, this. TestTypeFees);
+            }
+            
+        
+        public static DataTable GetAllTestTypes()
+        {
+            return clsTestTypesData.GetAllTestTypes();
+        }
+        
+        
+        public bool Save()
+        {
+            switch (_Mode)
+            {
+                case enTestTypesMode.AddNew:
+
+                    if (_AddNewTestTypes())
+                    {
+                        _Mode = enTestTypesMode.Update;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+
+                case enTestTypesMode.Update:
+
+                    return _UpdateTestTypes();
+            }
+
+            return false;
+        }
+        
+}
+                

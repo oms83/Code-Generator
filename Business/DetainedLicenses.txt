@@ -1,0 +1,128 @@
+
+using System;
+using System.Data;
+
+public class clsDetainedLicenses
+{
+        public enum enDetainedLicensesMode {AddNew = 0, Update = 1};
+        private enDetainedLicensesMode _Mode;
+                                        
+        public  DetainID { get; set; }
+	public  LicenseID { get; set; }
+	public  DetainDate { get; set; }
+	public  FineFees { get; set; }
+	public  CreatedByUserID { get; set; }
+	public  IsReleased { get; set; }
+	public  ReleaseDate { get; set; }
+	public  ReleasedByUserID { get; set; }
+	public  ReleaseApplicationID { get; set; }
+	
+        
+        public clsDetainedLicenses()
+        {
+                            
+            this.DetainID = -1; 
+	    this.LicenseID = -1; 
+	    this.DetainDate = null; 
+	    this.FineFees = 0; 
+	    this.CreatedByUserID = -1; 
+	    this.IsReleased = true; 
+	    this.ReleaseDate = null; 
+	    this.ReleasedByUserID = -1; 
+	    this.ReleaseApplicationID = -1; 
+	    
+
+            _Mode = enDetainedLicensesMode.AddNew;
+        }
+        
+        
+        private clsDetainedLicenses( int DetainID,  int LicenseID,  object DetainDate,  decimal FineFees,  int CreatedByUserID,  bool IsReleased,  object ReleaseDate,  int ReleasedByUserID,  int ReleaseApplicationID)
+        {
+            this.DetainID = DetainID; 
+	    this.LicenseID = LicenseID; 
+	    this.DetainDate = DetainDate; 
+	    this.FineFees = FineFees; 
+	    this.CreatedByUserID = CreatedByUserID; 
+	    this.IsReleased = IsReleased; 
+	    this.ReleaseDate = ReleaseDate; 
+	    this.ReleasedByUserID = ReleasedByUserID; 
+	    this.ReleaseApplicationID = ReleaseApplicationID; 
+	    
+            _Mode = enDetainedLicensesMode.Update;
+        }
+        
+        
+        
+        public static clsDetainedLicenses GetDetainedLicensesInfoByDetainID(int DetainID)
+        {
+            
+             int LicenseID = -1; 
+	     object DetainDate = null; 
+	     decimal FineFees = 0; 
+	     int CreatedByUserID = -1; 
+	     bool IsReleased = true; 
+	     object ReleaseDate = null; 
+	     int ReleasedByUserID = -1; 
+	     int ReleaseApplicationID = -1; 
+	    
+
+            bool IsFound = clsDetainedLicensesData.GetDetainedLicensesInfoDetainID(DetainID, ref  LicenseID, ref  DetainDate, ref  FineFees, ref  CreatedByUserID, ref  IsReleased, ref  ReleaseDate, ref  ReleasedByUserID, ref  ReleaseApplicationID);
+
+            if (IsFound)
+            {
+                return new clsDetainedLicenses( DetainID,  LicenseID,  DetainDate,  FineFees,  CreatedByUserID,  IsReleased,  ReleaseDate,  ReleasedByUserID,  ReleaseApplicationID);
+            }
+            else
+            {
+                return null;
+            }
+        }
+        
+        
+        
+        public static bool IsDetainedLicensesExistByDetainID(int DetainID)
+        {
+            return clsDetainedLicensesData.IsDetainedLicensesExistByDetainID(DetainID);
+        }
+        
+            
+        
+            private bool _UpdateDetainedLicenses()
+            {
+                return clsDetainedLicensesData.UpdateDetainedLicenses(this. DetainID, this. LicenseID, this. DetainDate, this. FineFees, this. CreatedByUserID, this. IsReleased, this. ReleaseDate, this. ReleasedByUserID, this. ReleaseApplicationID);
+            }
+            
+        
+        public static DataTable GetAllDetainedLicenses()
+        {
+            return clsDetainedLicensesData.GetAllDetainedLicenses();
+        }
+        
+        
+        public bool Save()
+        {
+            switch (_Mode)
+            {
+                case enDetainedLicensesMode.AddNew:
+
+                    if (_AddNewDetainedLicenses())
+                    {
+                        _Mode = enDetainedLicensesMode.Update;
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+
+                case enDetainedLicensesMode.Update:
+
+                    return _UpdateDetainedLicenses();
+            }
+
+            return false;
+        }
+        
+}
+                
